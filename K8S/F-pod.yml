@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tic-tac-toe-pod
+  namespace: tic-tac-toe
+spec:
+  containers:
+  - name: tic-tac-toe
+    image: shakirali1255/tic_tac_toe:latest
+    ports:
+    - containerPort: 80
