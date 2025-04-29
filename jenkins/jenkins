@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('code') {
+            steps {
+                echo 'this is cloning the code'
+                git url: "https://github.com/Shakirali62050/Tic_Tac_Toe.git" , branch:"master"
+                 echo "code clone succesfully"
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'this is building the code'
+                sh "docker build -t tic-tac-toe-app ."
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'this is testing the code'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'this is deploying the code'
+                sh "docker run -d -p 8000:80 tic-tac-toe-app:latest"
+            }
+        }
+    }
+}
